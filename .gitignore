@@ -6,7 +6,7 @@
 /.idea/
 /.psh.yaml.override
 /.php_cs.cache
-/docker-compose.override.yml
+# /docker-compose.override.yml
 
 /config/jwt/*
 !/config/jwt/.gitkeep

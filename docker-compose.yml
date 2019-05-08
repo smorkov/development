@@ -1,6 +1,12 @@
 version: '3.3'
 
 services:
+  app_data:
+    build: dev-ops/docker/containers/ssh
+    volumes:
+        - app_server_data:/app
+    ports:
+        - "2222:22"
   app_server:
     build: dev-ops/docker/containers/app
     links:
@@ -8,7 +14,7 @@ services:
     extra_hosts:
       - "docker.vm:127.0.0.1"
     volumes:
-      - .:/app
+      - app_server_data:/app
       - ~/.composer:/.composer
       - ~/.npm:/.npm
     tmpfs:
@@ -20,3 +26,11 @@ services:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_USER: app
       MYSQL_PASSWORD: app
+    volumes:
+      - app_server_mysql:/var/lib/mysql
+
+volumes:
+  app_server_data:
+    external: true
+  app_server_mysql:
+    external: true
