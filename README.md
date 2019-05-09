@@ -21,16 +21,16 @@ docker volume create app_server_mysql
 
 docker volume create app_server_data
 
----copy provided key  folder to /dev-ops/docker/containes/ssh----
-
-docker-compose up -d app_data
+---copy provided keys folder to /dev-ops/docker/containers/ssh----
 
 docker-compose build
 
+docker-compose up -d
+
 docker cp ./ development_app_data_1:/app
 
-docker exec -it development_app_server_1 bash
+docker exec -it development_app_server_1 bash and then run ./psh.phar install
 
-./psh.phar install
+docker exec development_app_server_1 /bin/sh -c "chown application:application /app -Rf"
 
 Then go to http://localhost:8000 and check if everything is okay
