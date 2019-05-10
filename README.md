@@ -29,7 +29,7 @@ docker-compose up -d
 
 docker cp ./ development_app_data_1:/app
 
-docker exec -it development_app_server_1 bash and then run ./psh.phar install
+docker exec development_app_server_1 /bin/sh -c "./psh.phar install"
 
 docker exec development_app_server_1 /bin/sh -c "chown application:application /app -Rf"
 
